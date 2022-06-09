@@ -19,6 +19,8 @@ std::string getword(std::string code, int idx) {
 
 
 
+
+
 std::vector<Token> tokeniser(std::string code) {
     std::vector<Token> tokens;
     Token token;
@@ -36,6 +38,7 @@ std::vector<Token> tokeniser(std::string code) {
     keywords.push_back("while");
     keywords.push_back("for");
     keywords.push_back("break");
+    keywords.push_back("continue");
     keywords.push_back("void");
 
     for (int i = 0; i < code.length(); i++) {
@@ -43,77 +46,81 @@ std::vector<Token> tokeniser(std::string code) {
         if (c == ' ' || c == '\n' || c == '\t') {
             continue;
         } else if (c == '+') {
-            token.value = c;
-            token.type = TT_OP;
+            token_value = c;
+            token_type = TT_OP;
         } else if (c == '-') {
-            token.value = c;
-            token.type = TT_OP;
+            token_value = c;
+            token_type = TT_OP;
         } else if (c == '*') {
-            token.value = c;
-            token.type = TT_OP;
+            token_value = c;
+            token_type = TT_OP;
         } else if (c == '/') {
-            token.value = c;
-            token.type = TT_OP;
+            token_value = c;
+            token_type = TT_OP;
         } else if (c == '=') {
-            token.value = c;
-            token.type = TT_OP;
+            token_value = c;
+            token_type = TT_OP;
         } else if (c == '<') {
-            token.value = c;
-            token.type = TT_OP;
+            token_value = c;
+            token_type = TT_OP;
         } else if (c == '>') {
-            token.value = c;
-            token.type = TT_OP;
+            token_value = c;
+            token_type = TT_OP;
         } else if (c == '!') {
-            token.value = c;
-            token.type = TT_OP;
+            token_value = c;
+            token_type = TT_OP;
         } else if (c == '&') {
-            token.value = c;
-            token.type = TT_OP;
+            token_value = c;
+            token_type = TT_OP;
         } else if (c == '|') {
-            token.value = c;
-            token.type = TT_OP;
+            token_value = c;
+            token_type = TT_OP;
         } else if (c == '(') {
-            token.value = c;
-            token.type = TT_OP;
+            token_value = c;
+            token_type = TT_OP;
         } else if (c == ')') {
-            token.value = c;
-            token.type = TT_OP;
+            token_value = c;
+            token_type = TT_OP;
         } else if (c == '{') {
-            token.value = c;
-            token.type = TT_OP;
+            token_value = c;
+            token_type = TT_OP;
         } else if (c == '}') {
-            token.value = c;
-            token.type = TT_OP;
+            token_value = c;
+            token_type = TT_OP;
         } else if (c == ';') {
-            token.value = c;
-            token.type = TT_OP;
+            token_value = c;
+            token_type = TT_OP;
+        } else if (c == ' ' || c =='\n' || c =='\t') {
+            continue;
         } else {
-            token.value = getword(code, i);
+            token_value = getword(code, i);
             bool isKeyword;
+            isKeyword = false;
             for (std::string keyword : keywords) {
-                if (token.value == keyword) {
-                    token.type = TT_KEYWORD;
-                    i += token.value.length() - 1;
+                if (token_value == keyword) {
+                    token_type = TT_KEYWORD;
+                    i += token_value.length() - 1;
                     isKeyword = true;
                     break;
                 }
             }
             if (!isKeyword) {
-                token.type = TT_IDEN;
-                if (token.value.find_first_not_of("0123456789") == std::string::npos) {
-                    token.type = TT_NUM;
-                } else if (token.value.find_first_not_of("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_-0123456789") == std::string::npos) {
-                    token.type = TT_IDEN;
+                token_type = TT_IDEN;
+                if (token_value.find_first_not_of("0123456789") == std::string::npos) {
+                    token_type = TT_NUM;
+                } else if (token_value.find_first_not_of("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_0123456789") == std::string::npos) {
+                    token_type = TT_IDEN;
                 } else {
-                    token.type = TT_UNKNOWN;
+                    token_type = TT_UNKNOWN;
                 }
-                i += token.value.length()-1;
+                i += token_value.length()-1;
             }
             
         }
-        
-        
-        tokens.push_back(token);
+        Token token_to_push;
+        token_to_push.type = token_type;
+        token_to_push.value = token_value;
+        tokens.push_back(token_to_push);
     }
     return tokens;
 }
