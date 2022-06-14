@@ -1,6 +1,8 @@
 #include <vector>
 #include <tokeniser.h>
+#include <parser.h>
 #include <iostream>
+#include <fstream>
 
 std::string enumToStr(TokenTypes type) {
     switch (type) {
@@ -16,13 +18,32 @@ std::string enumToStr(TokenTypes type) {
             return "TT_INT";
         case TT_KEYWORD:
             return "TT_KEYWORD";
+        case TT_PAREN:
+            return "TT_PAREN";
+        case TT_SEMICOLON:
+            return "TT_SEMICOLON";
+        case TT_BRACE:
+            return "TT_BRACE";
+        case TT_UNKNOWN:
+            return "TT_UNKNOWN";
         default:
             return "UNKNOWN";
     }
 }
-int main() {
-    std::string code = "int main() { int s = 0; print(s); return 0; }";
+int main(int argc, char **argv) {
+    // open the file at the given path
+    std::string path = argv[1];
+    std::ifstream file(path);
+    std::string code = "";
+    std::string line = "";
+    while (std::getline(file, line)) {
+        code += line;
+    }
+    std::cout << "Code: " << code << "\n";
+    
     std::vector<Token> tokens = tokeniser(code);
+    parse(tokens);
+    std::cout << "Tokens:\n";
     for (Token t : tokens) {
         std::cout << t.value << " - " << enumToStr(t.type) << '\n';
     }

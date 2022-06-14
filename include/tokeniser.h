@@ -9,6 +9,9 @@ enum TokenTypes {
     TT_NUM,
     TT_STR,
     TT_INT,
+    TT_PAREN,
+    TT_SEMICOLON,
+    TT_BRACE,
     TT_KEYWORD,
     TT_UNKNOWN
 };

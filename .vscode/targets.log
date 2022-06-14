@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Thu Jun 09 10:43:38 2022
+# Make data base, printed on Tue Jun 14 10:04:17 2022
 
 # Variables
 
@@ -27,7 +27,7 @@ VBOX_MSI_INSTALL_PATH = C:\Program Files\Oracle\VirtualBox\
 # environment
 LOCALAPPDATA = C:\Users\emmtb\AppData\Local
 # environment
-VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-1bd1a726-cfcd-4f2d-ac66-7939ec832ac3-sock
+VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-13ccd035-2808-4b32-b4ff-e3308eced97e-sock
 # environment
 VSCODE_CWD = C:\Users\emmtb\AppData\Local\Programs\Microsoft VS Code
 # environment
@@ -47,7 +47,7 @@ GOPATH = C:\Users\emmtb\go
 # environment
 LUA_DEV = C:\Program Files (x86)\Lua\5.1
 # environment
-CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_8408_QFHCPZOCVYGLRDMR
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_2992_YKTMPTZIXUYOVPUQ
 # environment
 FPS_BROWSER_USER_PROFILE_STRING = Default
 # environment
@@ -63,7 +63,7 @@ VSCODE_LOG_STACK = false
 # automatic
 %F = $(notdir $%)
 # environment
-VSCODE_CODE_CACHE_PATH = C:\Users\emmtb\AppData\Roaming\Code\CachedData\c3511e6c69bb39013c4a4b7b9566ec1ca73fc4d5
+VSCODE_CODE_CACHE_PATH = C:\Users\emmtb\AppData\Roaming\Code\CachedData\4af164ea3a06f701fe3e89a2bcbb421d2026b68f
 # environment
 LANG = C
 # default
@@ -105,7 +105,7 @@ MAKEFILE_LIST := Makefile
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 8408
+VSCODE_PID = 2992
 # automatic
 ?D = $(patsubst %/,%,$(patsubst %\,%,$(dir $?)))
 # environment
@@ -193,7 +193,7 @@ PUBLIC = C:\Users\Public
 # environment
 APPDATA = C:\Users\emmtb\AppData\Roaming
 # makefile (from 'Makefile', line 6)
-CFLAGS = -I./include -O2 -Wall -std=c++20 -g --static
+CFLAGS = -I./include -Wall -std=c++20 -g --static
 # environment
 HOMEDRIVE = C:
 # environment
@@ -207,7 +207,7 @@ ELECTRON_RUN_AS_NODE = 1
 # environment
 TEMP = C:\Users\emmtb\AppData\Local\Temp
 # environment
-VSCODE_IPC_HOOK = \\.\pipe\1f263562f1716af30e90a1522228517a-1.67.2-main-sock
+VSCODE_IPC_HOOK = \\.\pipe\1f263562f1716af30e90a1522228517a-1.68.0-main-sock
 # default
 .RECIPEPREFIX := 
 # automatic
@@ -237,10 +237,10 @@ PROCESSOR_IDENTIFIER = AMD64 Family 23 Model 104 Stepping 1, AuthenticAMD
 
 # Directories
 
-# src (key c:/Users/emmtb/Desktop/coding/cpp-sk16/src, mtime 1654727843): 4 files, no impossibilities.
-# . (key c:/Users/emmtb/Desktop/coding/cpp-sk16, mtime 1654734033): 8 files, no impossibilities.
+# src (key c:/Users/emmtb/Desktop/coding/cpp-sk16/src, mtime 1654812781): 5 files, no impossibilities.
+# . (key c:/Users/emmtb/Desktop/coding/cpp-sk16, mtime 1654822450): 10 files, no impossibilities.
 
-# 12 files, no impossibilities in 2 directories.
+# 15 files, no impossibilities in 2 directories.
 
 # Implicit Rules
 
@@ -251,7 +251,7 @@ PROCESSOR_IDENTIFIER = AMD64 Family 23 Model 104 Stepping 1, AuthenticAMD
 # 1 implicit rules, 0 (0.0%) terminal.
 # Files
 
-sk-16: pre-build src/main.o src/tokeniser.o
+sk-16: pre-build src/main.o src/parser.o src/tokeniser.o
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -267,7 +267,7 @@ src/tokeniser.o:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-09 08:36:27
+#  Last modified 2022-06-10 08:42:10
 #  File has been updated.
 #  Successfully updated.
 
@@ -283,7 +283,7 @@ pre-build: clean
 #  Modification time never checked.
 #  File has not been updated.
 #  recipe to execute (from 'Makefile', line 18):
-	-rm -rf hexagn
+	-rm -rf sk-16.exe
 	-mkdir obj
 
 # Not a target:
@@ -299,6 +299,12 @@ src/main.o:
 #  File has not been updated.
 
 # Not a target:
+src/parser.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
 all:
 #  Command line target.
 #  Implicit rule search has been done.
@@ -306,19 +312,20 @@ all:
 #  File has not been updated.
 
 # files hash-table stats:
-# Load=9/1024=1%, Rehash=0, Collisions=0/24=0%
+# Load=10/1024=1%, Rehash=0, Collisions=0/26=0%
 # VPATH Search Paths
 
-# No 'vpath' search paths.
+# No 'vpath 
+' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 20 / storage = 153 B / avg = 7 B
-# current buf: size = 8174 B / used = 153 B / count = 20 / avg = 7 B
+# strcache buffers: 1 (0) / strings = 24 / storage = 195 B / avg = 8 B
+# current buf: size = 8174 B / used = 195 B / count = 24 / avg = 8 B
 
-# strcache performance: lookups = 32 / hit rate = 37%
+# strcache performance: lookups = 36 / hit rate = 33%
 # hash-table stats:
-# Load=20/8192=0%, Rehash=0, Collisions=0/32=0%
-# Finished Make data base on Thu Jun 09 10:43:38 2022
+# Load=24/8192=0%, Rehash=0, Collisions=0/36=0%
+# Finished Make data base on Tue Jun 14 10:04:17 2022
 
  

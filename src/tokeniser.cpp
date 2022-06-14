@@ -3,11 +3,11 @@
 #include <string>
 #include <iostream>
 
-std::string getword(std::string code, int idx) {
+std::string getword(std::string code, int idx) { // Gets the word at the given index, if given index is greater than the start of the word, it will return the word from the start of the index
     std::string word = "";
 
-    for (int i = idx; i < code.length(); i++) {
-        if (code[i] == ' '||code[i] == '\n'||code[i] == '('||code[i]==')'||code[i]=='{'||code[i]=='}'||code[i]=='['||code[i]==']'||code[i]==';') {
+    for (long long unsigned int i = idx; i < code.length(); i++) {
+        if (code[i] == ' '||code[i] == '\n'||code[i] == '('||code[i]==')'||code[i]=='{'||code[i]=='}'||code[i]=='['||code[i]==']'||code[i]==';'||code[i]=='"') {
             break;
         } else {
             word += code[i];
@@ -17,9 +17,19 @@ std::string getword(std::string code, int idx) {
     return word;
 }   
 
+std::string getstring(std::string code, int idx) { 
+    std::string word = "";
 
-
-
+    for (long long unsigned int i = idx; i < code.length(); i++) {
+        if (code[i] == '"') {
+            break;
+        } else {
+            word += code[i];
+        }
+    }
+    
+    return word;
+}
 
 std::vector<Token> tokeniser(std::string code) {
     std::vector<Token> tokens;
@@ -27,7 +37,7 @@ std::vector<Token> tokeniser(std::string code) {
     std::string token_value = "";
     TokenTypes token_type = TokenTypes::TT_UNKNOWN;
 
-    std::vector<std::string> keywords;
+    std::vector<std::string> keywords; // Put all keywords here, for comparisions
     keywords.push_back("int");
     keywords.push_back("char");
     keywords.push_back("float");
@@ -40,8 +50,11 @@ std::vector<Token> tokeniser(std::string code) {
     keywords.push_back("break");
     keywords.push_back("continue");
     keywords.push_back("void");
+    keywords.push_back("true");
+    keywords.push_back("false");
+    keywords.push_back("int");
 
-    for (int i = 0; i < code.length(); i++) {
+    for (long long unsigned int i = 0; i < code.length(); i++) {
         char c = code[i];
         if (c == ' ' || c == '\n' || c == '\t') {
             continue;
@@ -77,21 +90,26 @@ std::vector<Token> tokeniser(std::string code) {
             token_type = TT_OP;
         } else if (c == '(') {
             token_value = c;
-            token_type = TT_OP;
+            token_type = TT_PAREN;
         } else if (c == ')') {
             token_value = c;
-            token_type = TT_OP;
+            token_type = TT_PAREN;
         } else if (c == '{') {
             token_value = c;
-            token_type = TT_OP;
+            token_type = TT_BRACE;
         } else if (c == '}') {
             token_value = c;
-            token_type = TT_OP;
+            token_type = TT_BRACE;
         } else if (c == ';') {
             token_value = c;
-            token_type = TT_OP;
+            token_type = TT_SEMICOLON;
         } else if (c == ' ' || c =='\n' || c =='\t') {
             continue;
+        } else if (c=='"') {
+            i+=1;
+            token_value = getstring(code, i);
+            token_type = TT_STR;
+            i+=token_value.length();
         } else {
             token_value = getword(code, i);
             bool isKeyword;
